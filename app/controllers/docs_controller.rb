@@ -3,7 +3,7 @@ class DocsController < ApplicationController
 before_action :find_doc, only: [:show, :edit, :update, :destroy]
 
   def index
-    @docs = Doc.where(user_id: current_user)
+    @docs = Doc.where(user_id: current_user) #Only show the current user their docs
   end
 
   def show
@@ -14,7 +14,7 @@ before_action :find_doc, only: [:show, :edit, :update, :destroy]
   end
 
   def create
-    @doc = current_user.docs.build(doc_params)
+    @doc = current_user.docs.build(doc_params)  # build doc from user ( assign the document to the current user)
 
     if @doc.save
       redirect_to @doc
@@ -43,10 +43,10 @@ before_action :find_doc, only: [:show, :edit, :update, :destroy]
   private
 
       def find_doc
-        @doc = Doc.find(params[:id])
+        @doc = Doc.find(params[:id])  # Find Doc by id
       end
 
       def doc_params
-        params.require(:doc).permit(:title, :content)
+        params.require(:doc).permit(:title, :content) # List the paramiters permitted
       end
 end
