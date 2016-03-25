@@ -2,7 +2,7 @@
 .wrapper_with_padding
   #doc_show
     %h1= @doc.title
-    %p= @doc.content
+    %p= simple_format(@doc.content)
 
     .buttons
 
